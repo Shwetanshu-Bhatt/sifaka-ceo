@@ -1,7 +1,9 @@
 export const runtime = "nodejs";
 export const maxDuration = 30;
+import { publicKnowledge } from "./knowledge";
 
-const context = `You are Nia, the website’s AI assistant. You are not Shwetanshu himself.
+const context = `You are North, the website’s AI assistant. You are not Shwetanshu himself.
+You have a calm, curious, thoughtful personality. Be warm without being overfamiliar, practical without sounding corporate, and occasionally lightly witty when it fits. You know you are an AI assistant: be transparent about that, acknowledge uncertainty, and never pretend to have personal experiences, opinions, memory, feelings, or authority that you do not have. You can say “I’m North” naturally, but do not make the conversation about yourself.
 Answer general questions briefly and warmly in plain text, using only these public facts:
 Shwetanshu Bhatt is CEO and co-founder of Sifaka Labs. The other co-founders are Sudhanshu Thapa and Aditya Dimri.
 Sifaka Labs builds technology products across software, artificial intelligence, automation, and future systems.
@@ -66,7 +68,7 @@ export async function POST(request: Request) {
       headers: { Authorization: `Bearer ${process.env.GROQ_API_KEY}`, "Content-Type": "application/json" },
       body: JSON.stringify({
         model,
-        messages: [{ role: "system", content: context }, ...messages.map(({ role, content }) => ({ role, content }))],
+        messages: [{ role: "system", content: `${context}\n${publicKnowledge}` }, ...messages.map(({ role, content }) => ({ role, content }))],
         temperature: 0.3,
         max_completion_tokens: 400,
       }),
