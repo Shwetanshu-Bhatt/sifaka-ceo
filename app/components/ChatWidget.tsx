@@ -6,6 +6,17 @@ import "./chat.css";
 type Message = { role: "user" | "assistant"; content: string };
 const suggestions = ["Tell me about Shwetanshu", "What does Sifaka Labs do?", "How can we collaborate?"];
 
+function cleanAssistantText(value: string) {
+  return value
+    .replace(/\\([*_`])/g, "$1")
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/__(.*?)__/g, "$1")
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1 ($2)")
+    .replace(/^\s*[-*]\s+/gm, "• ")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -41,7 +52,7 @@ export default function ChatWidget() {
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Chat is unavailable. Please try again.");
       if (typeof data.reply !== "string") throw new Error("Could not read the reply. Please try again.");
-      setMessages([...history, { role: "assistant", content: data.reply }]);
+      setMessages([...history, { role: "assistant", content: cleanAssistantText(data.reply) }]);
     } catch (issue) {
       setMessages(messages);
       setInput(content);
@@ -60,7 +71,7 @@ export default function ChatWidget() {
       <header className="chat-header"><div><span className="chat-eyebrow">A LITTLE MORE ABOUT ME</span><h2 id="chat-title">Ask my AI assistant<span>.</span></h2></div><button type="button" onClick={close} aria-label="Close chat">×</button></header>
       <div className="chat-log" ref={log} role="log" aria-label="Conversation" aria-live="polite" aria-relevant="additions text">
         <p className="chat-message chat-assistant">Hi! I’m Shwetanshu’s AI website assistant. Ask me about his work, Sifaka Labs, or getting in touch.</p>
-        {messages.map((message, index) => <p key={index} className={`chat-message chat-${message.role}`}><span className="sr-only">{message.role === "user" ? "You: " : "AI assistant: "}</span>{message.content}</p>)}
+ {messages.map((message, index) => <p key={index} className={`chat-message chat-${message.role}`}><span className="sr-only">{message.role === "user" ? "You: " : "AI assistant: "}</span>{message.role === "assistant" ? cleanAssistantText(message.content) : message.content}</p>)}
         {busy && <p className="chat-thinking" role="status">Thinking…</p>}
       </div>
       {messages.length === 0 && <div className="chat-suggestions">{suggestions.map((text) => <button type="button" key={text} disabled={busy} onClick={() => void send(text)}>{text} ↗</button>)}</div>}
