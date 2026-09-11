@@ -19,3 +19,14 @@
 .about-art .art-index { font-size: 0; }
 .about-art .art-index::after { content: 'CLARITY / CRAFT / MOMENTUM'; font: 8px/1.5 'DM Mono',monospace; letter-spacing: .8px; }
 .about-art:hover .architecture span { transform: skewY(-12deg) translateY(-8px); }
+.about-art .sifaka-card { display:flex; flex-direction:column; justify-content:space-between; width:100%; height:100%; padding:30px; background:#e5e4dd; }
+.sifaka-card-top { display:flex; justify-content:space-between; gap:16px; color:var(--muted); font:8px/1.5 'DM Mono',monospace; letter-spacing:.7px; }
+.sifaka-card img { display:block; width:clamp(120px, 24%, 190px); height:auto; margin:24px auto 18px; mix-blend-mode:multiply; }
+.sifaka-card-copy { max-width:360px; }
+.sifaka-card-copy > span { display:block; margin-bottom:9px; font:500 20px/1.2 'DM Sans',sans-serif; letter-spacing:-.04em; }
+.sifaka-card-copy p { margin:0; color:var(--muted); font-size:13px; line-height:1.65; }
+.sifaka-card-link { align-self:flex-start; display:inline-flex; gap:34px; margin-top:24px; padding:12px 0; border-bottom:1px solid var(--ink); font:10px 'DM Mono',monospace; letter-spacing:.3px; }
+.sifaka-card-link span { transition:transform .3s; }
+.sifaka-card-link:hover { color:var(--accent); }
+.sifaka-card-link:hover span { transform:translate(4px,-4px); }
+@media(max-width:650px){.about-art .sifaka-card{padding:22px}.sifaka-card img{width:125px;margin:18px auto}.sifaka-card-copy>span{font-size:18px}.sifaka-card-copy p{font-size:12px}.sifaka-card-link{margin-top:18px}}
