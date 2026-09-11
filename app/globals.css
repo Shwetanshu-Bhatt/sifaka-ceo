@@ -29,4 +29,10 @@
 .sifaka-card-link span { transition:transform .3s; }
 .sifaka-card-link:hover { color:var(--accent); }
 .sifaka-card-link:hover span { transform:translate(4px,-4px); }
+.about-art .sifaka-card { display:grid; grid-template-columns:minmax(150px,.9fr) 1.1fr; grid-template-rows:auto 1fr auto; align-items:stretch; gap:24px 34px; padding:32px; }
+.sifaka-card-top { grid-column:1 / -1; padding-bottom:18px; border-bottom:1px solid var(--line); }
+.sifaka-card img { grid-column:1; grid-row:2 / 4; align-self:center; justify-self:center; width:min(100%, 250px); max-height:350px; margin:0; object-fit:contain; }
+.sifaka-card-copy { grid-column:2; grid-row:2; align-self:end; max-width:280px; }
+.sifaka-card-link { grid-column:2; grid-row:3; align-self:end; margin-top:0; }
+@media(max-width:650px){.about-art .sifaka-card{display:grid;grid-template-columns:1fr;grid-template-rows:auto auto auto auto;gap:16px;padding:22px}.sifaka-card-top{grid-column:1}.sifaka-card img{grid-column:1;grid-row:2;width:145px;max-height:190px;margin:0 auto}.sifaka-card-copy{grid-column:1;grid-row:3;max-width:none}.sifaka-card-link{grid-column:1;grid-row:4;margin-top:4px}}
 @media(max-width:650px){.about-art .sifaka-card{padding:22px}.sifaka-card img{width:125px;margin:18px auto}.sifaka-card-copy>span{font-size:18px}.sifaka-card-copy p{font-size:12px}.sifaka-card-link{margin-top:18px}}
