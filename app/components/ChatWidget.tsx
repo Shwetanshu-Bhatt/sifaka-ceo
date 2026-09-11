@@ -4,7 +4,7 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 import "./chat.css";
 
 type Message = { role: "user" | "assistant"; content: string };
-const suggestions = ["Tell me about Shwetanshu", "What does Sifaka Labs do?", "How can we collaborate?"];
+const suggestions = ["Tell me about Shwetanshu", "Who are the Sifaka co-founders?", "How can we collaborate?"];
 
 function cleanAssistantText(value: string) {
   return value
@@ -68,10 +68,10 @@ export default function ChatWidget() {
 
   return <div className="ceo-chat">
     {open && <section className="chat-panel" id="ceo-chat-panel" role="region" aria-labelledby="chat-title" onKeyDown={(event) => { if (event.key === "Escape") close(); }}>
-      <header className="chat-header"><div><span className="chat-eyebrow">A LITTLE MORE ABOUT ME</span><h2 id="chat-title">Ask my AI assistant<span>.</span></h2></div><button type="button" onClick={close} aria-label="Close chat">×</button></header>
+      <header className="chat-header"><div><span className="chat-eyebrow">A LITTLE MORE ABOUT ME</span><h2 id="chat-title">Ask Nia<span>.</span></h2></div><button type="button" onClick={close} aria-label="Close chat">×</button></header>
       <div className="chat-log" ref={log} role="log" aria-label="Conversation" aria-live="polite" aria-relevant="additions text">
-        <p className="chat-message chat-assistant">Hi! I’m Shwetanshu’s AI website assistant. Ask me about his work, Sifaka Labs, or getting in touch.</p>
- {messages.map((message, index) => <p key={index} className={`chat-message chat-${message.role}`}><span className="sr-only">{message.role === "user" ? "You: " : "AI assistant: "}</span>{message.role === "assistant" ? cleanAssistantText(message.content) : message.content}</p>)}
+        <p className="chat-message chat-assistant">Hi! I’m Nia, Shwetanshu’s AI website assistant. Ask me about him, the co-founders, Sifaka Labs, or getting in touch.</p>
+ {messages.map((message, index) => <p key={index} className={`chat-message chat-${message.role}`}><span className="sr-only">{message.role === "user" ? "You: " : "Nia: "}</span>{message.role === "assistant" ? cleanAssistantText(message.content) : message.content}</p>)}
         {busy && <p className="chat-thinking" role="status">Thinking…</p>}
       </div>
       {messages.length === 0 && <div className="chat-suggestions">{suggestions.map((text) => <button type="button" key={text} disabled={busy} onClick={() => void send(text)}>{text} ↗</button>)}</div>}
