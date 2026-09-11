@@ -35,7 +35,7 @@ export default function Home() {
       <nav className="navigation" aria-label="Main navigation">
         <a className="wordmark" href="#top" aria-label="Shwetanshu Bhatt home">SB<span>.</span></a>
         <span className="nav-caption">SHWETANSHU BHATT<br /><span>CEO & FOUNDER, SIFAKA LABS</span></span>
-        <div className="nav-links"><a href="#about">The person</a><a href="#work">The pursuit</a><a className="nav-contact" href="#contact">Let’s talk <span>↗</span></a></div>
+        <div className="nav-links"><a href="#about">About me</a><a href="#work">The pursuit</a><a className="nav-contact" href="#contact">Let’s talk <span>↗</span></a></div>
       </nav>
 
       <section className="hero" aria-labelledby="hero-title">
@@ -48,7 +48,7 @@ export default function Home() {
           <img className="hero-portrait" src="/shwetanshu.png" alt="Shwetanshu Bhatt, CEO and founder of Sifaka Labs" width="1285" height="1224" fetchPriority="high" />
           <div className="portrait-edge" aria-hidden="true" />
           <figcaption><span>SHWETANSHU<br /><strong>BHATT</strong></span><span>FOUNDER.<br />BUILDER.<br />ALWAYS FORWARD.</span></figcaption>
-          <span className="portrait-index" aria-hidden="true">01 — THE PERSON BEHIND THE WORK</span>
+          <span className="portrait-index" aria-hidden="true">01 — A LITTLE ABOUT ME</span>
         </figure>
         <div className="hero-footer"><span>INDEPENDENT MIND. COLLECTIVE AMBITION.</span><span>SCROLL TO GET THE FULL PICTURE ↓</span></div>
       </section>
@@ -56,7 +56,7 @@ export default function Home() {
       <div className="marquee" aria-hidden="true"><div>{[0, 1, 2, 3].map((i) => <span key={i}>VISION <b>/</b> OWNERSHIP <b>/</b> EXECUTION <b>/</b> </span>)}</div></div>
 
       <section className="about section-pad" id="about">
-        <div className="section-label reveal"><span>01 / THE PERSON</span><span>MORE THAN A JOB TITLE</span></div>
+        <div className="section-label reveal"><span>01 / ABOUT ME</span><span>BEYOND THE JOB TITLE</span></div>
         <div className="about-layout"><div className="about-brand"><div className="about-art reveal"><div className="sifaka-card"><img src="/sifaka-full-logo.svg" alt="Sifaka Labs" /></div></div><div className="sifaka-details reveal"><span className="sifaka-details-kicker">FOUNDER / SIFAKA LABS</span><h3>Founder of Sifaka Labs</h3><p>Building meaningful technology products across software, artificial intelligence, automation, and future systems.</p><a className="sifaka-card-link" href="https://sifakalabs.in/" target="_blank" rel="noreferrer">Visit Sifaka Labs <span>↗</span></a></div></div><div className="about-copy reveal"><h2>See the whole.<br /><em>Own the details.</em></h2><p className="lead">I’m drawn to the messy, exciting space between “this could exist” and “here it is.”</p><p>At Sifaka Labs, I turn that curiosity into products. I care about the details people feel, the problems worth solving, and the people who make the whole thing possible.</p><p>Less standing on the sidelines. More rolling up sleeves. There’s always something interesting to build.</p><a className="text-link" href="#principles">A few things I believe <span>↘</span></a></div></div>
       </section>
 
