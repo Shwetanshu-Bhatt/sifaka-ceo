@@ -35,7 +35,7 @@ export default function Home() {
       <nav className="navigation" aria-label="Main navigation">
         <a className="wordmark" href="#top" aria-label="Shwetanshu Bhatt home">SB<span>.</span></a>
         <span className="nav-caption">SHWETANSHU BHATT<br /><span>CEO & CO-FOUNDER, SIFAKA LABS</span></span>
-        <div className="nav-links"><a href="#about">About me</a><a href="#work">The pursuit</a><a className="nav-contact" href="#contact">Let’s talk <span>↗</span></a></div>
+        <div className="nav-links"><a href="#about">About me</a><a href="#work">The pursuit</a><a href="/blog">Notes</a><a className="nav-contact" href="#contact">Let’s talk <span>↗</span></a></div>
       </nav>
 
       <section className="hero" aria-labelledby="hero-title">
