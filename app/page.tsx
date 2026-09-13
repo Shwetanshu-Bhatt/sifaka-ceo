@@ -13,16 +13,90 @@ export default function Home() {
   const [emailCopied, setEmailCopied] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-          entry.target.animate([{ opacity: 0, translate: "0 24px" }, { opacity: 1, translate: "0 0" }], { duration: 800, easing: "ease-out" });
-        }
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const revealItems = document.querySelectorAll<HTMLElement>([
+      ".reveal",
+      ".product-card",
+      ".project-card",
+      ".work-title",
+      ".principles-layout",
+      ".contact-content",
+    ].join(", "));
+    const panels = document.querySelectorAll<HTMLElement>("main#top > section:not(.hero)");
+
+    if (reducedMotion) {
+      revealItems.forEach((item) => item.classList.add("is-visible"));
+      return;
+    }
+
+    document.documentElement.classList.add("motion-ready");
+    revealItems.forEach((item, index) => {
+      item.style.setProperty("--reveal-delay", `${(index % 3) * 90}ms`);
+
+      const slidesFromRight = item.matches(".about-copy, .product-card:nth-child(even), .accordion");
+      const slidesVertically = item.matches(".project-card, .work-title, .principles-layout, .contact-content");
+
+      item.style.setProperty("--slide-x", slidesVertically ? "0px" : slidesFromRight ? "110px" : "-110px");
+      item.style.setProperty("--slide-y", slidesVertically ? "90px" : "0px");
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
         observer.unobserve(entry.target);
-      }
-    }), { threshold: 0.12 });
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+      });
+    }, { threshold: 0.14, rootMargin: "0px 0px -5%" });
+
+    revealItems.forEach((item) => observer.observe(item));
+
+    const panelObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("panel-visible");
+      });
+    }, { threshold: 0.04 });
+
+    panels.forEach((panel, index) => {
+      panel.classList.add("motion-panel");
+      panel.style.setProperty("--panel-layer", String(index + 2));
+      panelObserver.observe(panel);
+    });
+
+    const projectVisual = document.querySelector<HTMLElement>(".project-visual");
+    const onPointerMove = (event: PointerEvent) => {
+      if (!projectVisual) return;
+      const bounds = projectVisual.getBoundingClientRect();
+      projectVisual.style.setProperty("--pointer-x", `${(event.clientX - bounds.left) / bounds.width - 0.5}`);
+      projectVisual.style.setProperty("--pointer-y", `${(event.clientY - bounds.top) / bounds.height - 0.5}`);
+    };
+    const onPointerLeave = () => {
+      projectVisual?.style.setProperty("--pointer-x", "0");
+      projectVisual?.style.setProperty("--pointer-y", "0");
+    };
+
+    let frame = 0;
+    const updateScrollMotion = () => {
+      frame = 0;
+      document.documentElement.style.setProperty("--portrait-shift", `${Math.min(window.scrollY * 0.035, 24)}px`);
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateScrollMotion);
+    };
+
+    projectVisual?.addEventListener("pointermove", onPointerMove);
+    projectVisual?.addEventListener("pointerleave", onPointerLeave);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    updateScrollMotion();
+
+    return () => {
+      observer.disconnect();
+      panelObserver.disconnect();
+      document.documentElement.classList.remove("motion-ready");
+      projectVisual?.removeEventListener("pointermove", onPointerMove);
+      projectVisual?.removeEventListener("pointerleave", onPointerLeave);
+      window.removeEventListener("scroll", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, []);
 
   async function copyEmail() {

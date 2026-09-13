@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import "./components/brand-fixes.css";
 import "./products.css";
+import "./motion.css";
 import ChatWidget from "./components/ChatWidget";
 import CleanSectionLinks from "./components/CleanSectionLinks";
 import StructuredData from "./components/StructuredData";
