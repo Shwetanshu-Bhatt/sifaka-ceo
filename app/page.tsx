@@ -48,7 +48,7 @@ export default function Home() {
           <img className="hero-portrait" src="/shwetanshu.png" alt="Shwetanshu Bhatt, CEO and co-founder of Sifaka Labs" width="1285" height="1224" fetchPriority="high" />
           <div className="portrait-edge" aria-hidden="true" />
           <figcaption><span>SHWETANSHU<br /><strong>BHATT</strong></span><span>CO-FOUNDER.<br />BUILDER.<br />ALWAYS FORWARD.</span></figcaption>
-          <span className="portrait-index" aria-hidden="true">01 — A LITTLE ABOUT ME</span>
+          <span className="portrait-index" aria-hidden="true">PORTRAIT — A LITTLE ABOUT ME</span>
         </figure>
         <div className="hero-footer"><span>INDEPENDENT MIND. COLLECTIVE AMBITION.</span><span>SCROLL TO GET THE FULL PICTURE ↓</span></div>
       </section>
@@ -63,12 +63,28 @@ export default function Home() {
       <section className="work section-pad" id="work">
         <div className="section-label reveal"><span>02 / THE PURSUIT</span><span>THINKING IS GOOD. MAKING IS BETTER.</span></div>
         <div className="work-title reveal"><h2>Ideas are the start.<br /><em>Execution is the work.</em></h2><p>A home for ambitious ideas.<br />And the energy to see them through.</p></div>
-        <a className="project-card reveal" href="#contact"><div className="project-visual"><span className="project-overline">INDEPENDENT THINKING. REAL-WORLD BUILDING.</span><div className="lab-art" aria-hidden="true"><div className="lab-beam" /><div className="lab-beam" /><div className="lab-beam" /></div><span className="lab-word">Sifaka<span>LABS</span></span><span className="project-chip">THE VENTURE STUDIO</span><span className="project-circle">↗</span></div><div className="project-caption"><div><span>01</span><h3>Sifaka Labs</h3></div><p>Where curiosity becomes something you can use.</p><span>LET’S BUILD SOMETHING ↗</span></div></a>
+        <a className="project-card reveal" href="#contact"><div className="project-visual"><span className="project-overline">INDEPENDENT THINKING. REAL-WORLD BUILDING.</span><div className="lab-art" aria-hidden="true"><div className="lab-beam" /><div className="lab-beam" /><div className="lab-beam" /></div><span className="lab-word">Sifaka<span>LABS</span></span><span className="project-chip">THE VENTURE STUDIO</span><span className="project-circle">↗</span></div><div className="project-caption"><div><span>PROJECT / 01</span><h3>Sifaka Labs</h3></div><p>Where curiosity becomes something you can use.</p><span>LET’S BUILD SOMETHING ↗</span></div></a>
       </section>
 
-      <section className="principles section-pad" id="principles"><div className="section-label reveal"><span>03 / THE OPERATING SYSTEM</span><span>STRONG BELIEFS. OPEN MIND.</span></div><div className="principles-layout"><h2 className="reveal">No playbook.<br />A few <em>principles.</em></h2><div className="accordion reveal">{principles.map((item, index) => <div className={`principle ${open === index ? "expanded" : ""}`} key={item.title}><h3><button aria-expanded={open === index} aria-controls={`principle-${index}`} onClick={() => setOpen(open === index ? null : index)}><span className="principle-number">0{index + 1}</span><span>{item.title}</span><b>{open === index ? "−" : "+"}</b></button></h3><div id={`principle-${index}`} hidden={open !== index}><p>{item.text}</p></div></div>)}</div></div></section>
+      <section className="products section-pad" id="products">
+        <div className="section-label reveal"><span>03 / PRODUCTS BY SIFAKA LABS</span><span>BUILT WITH INTENT</span></div>
+        <div className="products-grid">
+          <a className="product-card reveal" href="https://travelnflex.com" target="_blank" rel="noreferrer">
+            <h3>TravelnFlex</h3>
+            <p>Thoughtful travel planning and booking, with the details in view.</p>
+            <span>Explore product →</span>
+          </a>
+          <a className="product-card reveal" href="https://sentinel.apsgroupco.com/" target="_blank" rel="noreferrer">
+            <h3>Sentinel</h3>
+            <p>A personal vault for keeping important information secure.</p>
+            <span>Explore product →</span>
+          </a>
+        </div>
+      </section>
 
-      <section className="contact section-pad" id="contact"><div className="section-label"><span>04 / WHAT’S NEXT?</span><span><span className="status-dot" /> OPEN TO GOOD CONVERSATIONS</span></div><div className="contact-content reveal"><p>For the next venture. The difficult problem. The bigger ambition.</p><h2>LET’S BUILD<br /><em>WHAT’S NEXT.</em></h2><div className="contact-actions"><a href="mailto:ceo@sifakalabs.in">ceo@sifakalabs.in <span>↗</span></a><button onClick={copyEmail} aria-label="Copy email address">{emailCopied ? "COPIED ✓" : "COPY EMAIL ⧉"}</button><span className="sr-only" role="status">{emailCopied ? "Email address copied" : ""}</span></div></div><footer><a className="wordmark" href="#top">SB<span>.</span></a><span>© {new Date().getFullYear()} SHWETANSHU BHATT</span><span>BUILT WITH INTENT. ALWAYS EVOLVING.</span><a href="#top">BACK TO TOP ↑</a></footer></section>
+      <section className="principles section-pad" id="principles"><div className="section-label reveal"><span>04 / THE OPERATING SYSTEM</span><span>STRONG BELIEFS. OPEN MIND.</span></div><div className="principles-layout"><h2 className="reveal">No playbook.<br />A few <em>principles.</em></h2><div className="accordion reveal">{principles.map((item, index) => <div className={`principle ${open === index ? "expanded" : ""}`} key={item.title}><h3><button aria-expanded={open === index} aria-controls={`principle-${index}`} onClick={() => setOpen(open === index ? null : index)}><span className="principle-number">BELIEF / 0{index + 1}</span><span>{item.title}</span><b>{open === index ? "−" : "+"}</b></button></h3><div id={`principle-${index}`} hidden={open !== index}><p>{item.text}</p></div></div>)}</div></div></section>
+
+      <section className="contact section-pad" id="contact"><div className="section-label"><span>05 / WHAT’S NEXT?</span><span><span className="status-dot" /> OPEN TO GOOD CONVERSATIONS</span></div><div className="contact-content reveal"><p>For the next venture. The difficult problem. The bigger ambition.</p><h2>LET’S BUILD<br /><em>WHAT’S NEXT.</em></h2><div className="contact-actions"><a href="mailto:ceo@sifakalabs.in">ceo@sifakalabs.in <span>↗</span></a><button onClick={copyEmail} aria-label="Copy email address">{emailCopied ? "COPIED ✓" : "COPY EMAIL ⧉"}</button><span className="sr-only" role="status">{emailCopied ? "Email address copied" : ""}</span></div></div><footer><a className="wordmark" href="#top">SB<span>.</span></a><span>© {new Date().getFullYear()} SHWETANSHU BHATT</span><span>BUILT WITH INTENT. ALWAYS EVOLVING.</span><a href="#top">BACK TO TOP ↑</a></footer></section>
     </main>
   );
 }
